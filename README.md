@@ -9,6 +9,7 @@ this app was built with Flutter Webview
 if you have any improvements, please commit your changes to the project
 
 If you like the project please star 
+- [Snapdrop Flutter](https://github.com/congnguyendinh0/snapdrop_flutter)
 
 - [Snapdrop](https://snapdrop.net/)
 
