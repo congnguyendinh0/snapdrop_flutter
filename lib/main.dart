@@ -34,9 +34,31 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Snapdrop Flutter'),
+          actions: [
+            IconButton(
+                icon: Icon(Icons.star),
+                onPressed: () async {
+                  const url =
+                      'https://github.com/congnguyendinh0/snapdrop_flutter';
+                  if (await canLaunch(url)) {
+                    await launch(url);
+                  } else {
+                    throw 'Could not launch $url';
+                  }
+                }),
+            IconButton(
+              icon: Icon(Icons.refresh),
+              onPressed: () {
+                if (webView != null) {
+                  webView.reload();
+                }
+              },
+            )
+          ],
         ),
         body: Container(
             child: Column(children: <Widget>[
@@ -61,32 +83,9 @@ class _MyAppState extends State<MyApp> {
                 showNotification: true,
                 openFileFromNotification: true,
               );
+              print(taskId);
             },
           )),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              RaisedButton(
-                child: Icon(Icons.refresh),
-                onPressed: () {
-                  if (webView != null) {
-                    webView.reload();
-                  }
-                },
-              ),
-              RaisedButton(
-                  child: Icon(Icons.star),
-                  onPressed: () async {
-                    const url =
-                        'https://github.com/congnguyendinh0/snapdrop_flutter';
-                    if (await canLaunch(url)) {
-                      await launch(url);
-                    } else {
-                      throw 'Could not launch $url';
-                    }
-                  }),
-            ],
-          ),
         ])),
       ),
     );
